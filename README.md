@@ -43,10 +43,10 @@ Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
 <hr>
 
 
-[Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
+[💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
 
-[LinkedIn profile](https://uk.linkedin.com/in/stevepurcell)
+[💼 LinkedIn profile](https://uk.linkedin.com/in/stevepurcell)
 
-[sanityinc.com](http://www.sanityinc.com/)
+[✍ sanityinc.com](http://www.sanityinc.com/)
 
-[@sanityinc](https://twitter.com/sanityinc)
+[🐦 @sanityinc](https://twitter.com/sanityinc)
