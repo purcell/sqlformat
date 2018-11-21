@@ -119,7 +119,6 @@ Install the \"sqlparse\" (Python) package to get \"sqlformat\", or
     (with-temp-buffer
       (let ((outbuf (current-buffer)))
         (with-current-buffer sqlbuf
-          (message "Command is %S" command)
           (when (zerop (shell-command-on-region beg end command outbuf nil "*sqlformat-errors*" t))
             (save-excursion
               (delete-region beg end)
