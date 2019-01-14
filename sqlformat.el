@@ -83,7 +83,7 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
 
 ;;;###autoload
 (defun sqlformat (beg end)
-  "Reformat SQL in region from BEG to END using `sqlformat-command'.
+  "Reformat SQL in region from BEG to END using `sqlformat-region'.
 If no region is active, the current statement (paragraph) is reformatted.
 Install the \"sqlparse\" (Python) package to get \"sqlformat\", or
 \"pgformatter\" to get \"pg_format\"."
