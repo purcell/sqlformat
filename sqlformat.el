@@ -4,7 +4,8 @@
 
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; Keywords: languages
-;; Package-Requires: ((emacs "24"))
+;; URL: https://github.com/purcell/sqlformat
+;; Package-Requires: ((emacs "24") (reformatter "0.3"))
 ;; Version: 0
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -29,21 +30,29 @@
 ;; "pgformatter" to get "pg_format".
 
 ;; Customise the `sqlformat-command' variable as desired, then call
-;; `sqlformat' or `sqlformat-buffer' as convenient.
+;; `sqlformat', `sqlformat-buffer' or `sqlformat-region' as convenient.
 
-;; Enable `sqlformat-mode' in SQL buffers like this:
+;; Enable `sqlformat-on-save-mode' in SQL buffers like this:
 
-;;     (add-hook 'sql-mode-hook 'sqlformat-mode)
+;;     (add-hook 'sql-mode-hook 'sqlformat-on-save-mode)
 
-;; The `sqlformat' command will then be bound to "C-c C-f" by default.
-;; If `sqlformat-mode-format-on-save' is enabled, this mode will apply
-;; the configured `sqlformat-command' to the buffer every time it is
-;; saved.
+;; or locally to your project with a form in your .dir-locals.el like
+;; this:
+
+;;     ((sql-mode
+;;       (mode . sqlformat-on-save)))
+
+;; You might like to bind `sqlformat' or `sqlformat-buffer' to a key,
+;; e.g. with:
+
+;;     (define-key 'sql-mode-map (kbd "C-c C-f") 'sqlformat)
 
 ;;; Code:
 
 
 ;; Minor mode and customisation
+
+(require 'reformatter)
 
 (defgroup sqlformat nil
   "Reformat SQL using sqlformat or pgformatter."
@@ -54,46 +63,23 @@
 This command should receive SQL input via STDIN and output the
 reformatted SQL to STDOUT, returning an appropriate exit code."
   :type '(choice (const :tag "Use \"sqlformat\"" sqlformat)
-                 (const :tag "Use \"pgformatter\"" pgformatter)
-                 (string :tag "Custom command")))
-
-(defcustom sqlformat-mode-format-on-save nil
-  "When non-nil, format the buffer on save."
-  :type 'boolean)
-
-(defcustom sqlformat-mode-lighter " SQLFmt"
-  "Mode lighter for `sqlformat-mode'."
-  :type 'string)
-
-(defvar sqlformat-mode-map (make-sparse-keymap)
-  "Keymap for `sqlformat-mode'.")
-
-(define-key sqlformat-mode-map (kbd "C-c C-f") 'sqlformat)
-
-(defun sqlformat--on-save ()
-  "Function called from `before-save-hook' when `sqlformat-mode' is active."
-  (when sqlformat-mode-format-on-save
-    (sqlformat-buffer)))
-
-;;;###autoload
-(define-minor-mode sqlformat-mode
-  "Easy access to SQL reformatting using external programs, optionally including on save."
-  :global nil
-  :keymap sqlformat-mode-map
-  :lighter '(:eval sqlformat-mode-lighter)
-  (if sqlformat-mode
-      (add-hook 'before-save-hook 'sqlformat--on-save nil t)
-    (remove-hook 'before-save-hook 'sqlformat--on-save t)))
-
+                 (const :tag "Use \"pgformatter\"" pgformatter)))
 
 
 ;; Commands for reformatting
 
-;;;###autoload
-(defun sqlformat-buffer ()
-  "Reformat the entire SQL buffer using the `sqlformat' command."
-  (interactive)
-  (sqlformat (point-min) (point-max)))
+;;;###autoload (autoload 'sqlformat-buffer "sqlformat" nil t)
+;;;###autoload (autoload 'sqlformat-region "sqlformat" nil t)
+;;;###autoload (autoload 'sqlformat-on-save-mode "sqlformat" nil t)
+(reformatter-define sqlformat
+  :program (pcase sqlformat-command
+             (`sqlformat "sqlformat")
+             (`pgformatter "pg_format"))
+  :args (pcase sqlformat-command
+          (`sqlformat '("-r" "-"))
+          (`pgformatter '("-")))
+  :lighter " SQLFmt"
+  :group 'sqlformat)
 
 ;;;###autoload
 (defun sqlformat (beg end)
@@ -111,19 +97,7 @@ Install the \"sqlparse\" (Python) package to get \"sqlformat\", or
                 (forward-paragraph)
                 (skip-syntax-backward " >")
                 (point))))
-  (let ((command (pcase sqlformat-command
-                   (`sqlformat "sqlformat -r -")
-                   (`pgformatter "pg_format -")
-                   (custom custom)))
-        (sqlbuf (current-buffer)))
-    (with-temp-buffer
-      (let ((outbuf (current-buffer)))
-        (with-current-buffer sqlbuf
-          (when (zerop (shell-command-on-region beg end command outbuf nil "*sqlformat-errors*" t))
-            (save-excursion
-              (delete-region beg end)
-              (goto-char beg)
-              (insert-buffer-substring outbuf))))))))
+  (sqlformat-region beg end (called-interactively-p 'any)))
 
 
 (provide 'sqlformat)

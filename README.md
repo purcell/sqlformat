@@ -19,19 +19,29 @@ then `(require 'sqlformat)`.
 Usage
 =====
 
-Customise the `sqlformat-command` variable as desired, then
-call `M-x sqlformat` or `M-x sqlformat-buffer` as convenient.
+Customise the `sqlformat-command` variable as desired, then call
+`sqlformat`, `sqlformat-buffer` or `sqlformat-region` as convenient.
 
-Enable `sqlformat-mode` in SQL buffers like this:
+Enable `sqlformat-on-save-mode` in SQL buffers like this:
 
-```lisp
-(add-hook 'sql-mode-hook 'sqlformat-mode)
+```el
+(add-hook 'sql-mode-hook 'sqlformat-on-save-mode)
 ```
 
-The `sqlformat` command will then be bound to <kbd>C-c C-f</kbd> by
-default. If `sqlformat-mode-format-on-save` is enabled, this mode will
-apply the configured `sqlformat-command` to the buffer every time it
-is saved.
+or locally to your project with a form in your .dir-locals.el like
+this:
+
+```el
+((sql-mode
+   (mode . sqlformat-on-save)))
+```
+
+You might like to bind `sqlformat` or `sqlformat-buffer` to a key,
+e.g. with:
+
+```el
+(define-key 'sql-mode-map (kbd "C-c C-f") 'sqlformat)
+```
 
 Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
 [pgformatter][pgformatter] to get "pg_format"
@@ -41,7 +51,6 @@ Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
 [pgformatter]: https://github.com/darold/pgFormatter
 
 <hr>
-
 
 [💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
 
