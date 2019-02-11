@@ -40,7 +40,7 @@ You might like to bind `sqlformat` or `sqlformat-buffer` to a key,
 e.g. with:
 
 ```el
-(define-key 'sql-mode-map (kbd "C-c C-f") 'sqlformat)
+(define-key sql-mode-map (kbd "C-c C-f") 'sqlformat)
 ```
 
 Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
