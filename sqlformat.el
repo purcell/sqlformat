@@ -65,6 +65,11 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
   :type '(choice (const :tag "Use \"sqlformat\"" sqlformat)
                  (const :tag "Use \"pgformatter\"" pgformatter)))
 
+(defcustom sqlformat-args '()
+  "List of args for reformatting command.
+For example these options may be useful for sqlformat command: '(\"-k\" \"upper\")"
+  :type '(repeat string))
+
 
 ;; Commands for reformatting
 
@@ -76,8 +81,8 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
              (`sqlformat "sqlformat")
              (`pgformatter "pg_format"))
   :args (pcase sqlformat-command
-          (`sqlformat '("-r" "-"))
-          (`pgformatter '("-")))
+          (`sqlformat  (append sqlformat-args '("-r" "-")))
+          (`pgformatter (append sqlformat-args '("-"))))
   :lighter " SQLFmt"
   :group 'sqlformat)
 
