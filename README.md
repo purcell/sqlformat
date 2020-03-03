@@ -19,8 +19,16 @@ then `(require 'sqlformat)`.
 Usage
 =====
 
-Customise the `sqlformat-command` variable as desired, then call
-`sqlformat`, `sqlformat-buffer` or `sqlformat-region` as convenient.
+Customise the `sqlformat-command` variable as desired. For example, to
+use [pgformatter][pgformatter] (i.e., the `pg_format` command) with
+two-character indent and no statement grouping,
+
+``` el
+(setq sqlformat-command 'pgformatter)
+(setq sqlformat-args '("-s2" "-g"))
+```
+
+Then call `sqlformat`, `sqlformat-buffer` or `sqlformat-region` as convenient.
 
 Enable `sqlformat-on-save-mode` in SQL buffers like this:
 
