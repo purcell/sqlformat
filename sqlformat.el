@@ -5,7 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; Keywords: languages
 ;; URL: https://github.com/purcell/sqlformat
-;; Package-Requires: ((emacs "24") (reformatter "0.3"))
+;; Package-Requires: ((emacs "24.3") (reformatter "0.3"))
 ;; Version: 0
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,7 @@
 ;; Install the "sqlparse" (Python) package to get "sqlformat", or
 ;; "pgformatter" to get "pg_format".
 
-;; Customise the `sqlformat-command' variable as desired. For example,
+;; Customise the `sqlformat-command' variable as desired.  For example,
 ;; to use "pgformatter" (i.e., the `pg_format` command) with
 ;; two-character indent and no statement grouping,
 
