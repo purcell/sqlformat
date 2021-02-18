@@ -7,7 +7,7 @@ sqlformat.el
 ============
 
 This Emacs library provides commands and a minor mode for easily reformatting
-SQL using external programs such as [sqlformat][sqlformat] and [pg_format][pgformatter].
+SQL using external programs such as [sqlformat][sqlformat], [sqlfluff][sqlfluff] or [pg_format][pgformatter].
 
 Installation
 =============
@@ -58,6 +58,7 @@ Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
 [melpa]: http://melpa.org
 [sqlformat]: https://sqlformat.org/
 [pgformatter]: https://github.com/darold/pgFormatter
+[sqlfluff]: https://www.sqlfluff.com
 
 <hr>
 
