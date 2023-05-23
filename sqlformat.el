@@ -72,7 +72,7 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
   :type '(choice (const :tag "Use \"sqlformat\"" sqlformat)
                  (const :tag "Use \"pgformatter\"" pgformatter)
                  (const :tag "Use \"sqlfluff\"" sqlfluff)
-                 (const :tag "Use \"sql-formatter\"" sql-formatter))))
+                 (const :tag "Use \"sql-formatter\"" sql-formatter)))
 
 (defcustom sqlformat-args '()
   "List of args for reformatting command.
