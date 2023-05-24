@@ -71,7 +71,8 @@ This command should receive SQL input via STDIN and output the
 reformatted SQL to STDOUT, returning an appropriate exit code."
   :type '(choice (const :tag "Use \"sqlformat\"" sqlformat)
                  (const :tag "Use \"pgformatter\"" pgformatter)
-                 (const :tag "Use \"sqlfluff\"" sqlfluff)))
+                 (const :tag "Use \"sqlfluff\"" sqlfluff)
+                 (const :tag "Use \"sql-formatter\"" sql-formatter)))
 
 (defcustom sqlformat-args '()
   "List of args for reformatting command.
@@ -88,11 +89,13 @@ For example these options may be useful for sqlformat command: '(\"-k\" \"upper\
   :program (pcase sqlformat-command
              (`sqlformat "sqlformat")
              (`pgformatter "pg_format")
-             (`sqlfluff "sqlfluff"))
+             (`sqlfluff "sqlfluff")
+             (`sql-formatter "sql-formatter"))
   :args (pcase sqlformat-command
           (`sqlformat  (append sqlformat-args '("-r" "-")))
           (`pgformatter (append sqlformat-args '("-")))
-          (`sqlfluff (append '("fix") sqlformat-args '("-f" "-"))))
+          (`sqlfluff (append '("fix") sqlformat-args '("-f" "-")))
+          (`sql-formatter sqlformat-args))
   :lighter " SQLFmt"
   :group 'sqlformat)
 
