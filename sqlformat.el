@@ -94,7 +94,7 @@ For example these options may be useful for sqlformat command: '(\"-k\" \"upper\
   :args (pcase sqlformat-command
           (`sqlformat  (append sqlformat-args '("-r" "-")))
           (`pgformatter (append sqlformat-args '("-")))
-          (`sqlfluff (append '("fix") sqlformat-args '("-f" "-")))
+          (`sqlfluff (append '("format") sqlformat-args '("-")))
           (`sql-formatter sqlformat-args))
   :lighter " SQLFmt"
   :group 'sqlformat)
