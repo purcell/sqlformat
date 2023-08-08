@@ -75,8 +75,8 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
                  (const :tag "Use \"sql-formatter\"" sql-formatter)))
 
 (defcustom sqlformat-args '()
-  "List of args for reformatting command.
-For example these options may be useful for sqlformat command: '(\"-k\" \"upper\")"
+  "List of command-line args for reformatting command.
+For example, these args may be useful for sqlformat: (\"-k\" \"upper\")"
   :type '(repeat string))
 
 
