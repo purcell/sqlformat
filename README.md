@@ -1,6 +1,6 @@
 [![Melpa Status](http://melpa.org/packages/sqlformat-badge.svg)](http://melpa.org/#/sqlformat)
 [![Melpa Stable Status](http://stable.melpa.org/packages/sqlformat-badge.svg)](http://stable.melpa.org/#/sqlformat)
-[![Build Status](https://github.com/purcell/sqlformat/workflows/CI/badge.svg)](https://github.com/purcell/sqlformat/actions)
+[![Build Status](https://github.com/purcell/sqlformat/actions/workflows/test.yml/badge.svg)](https://github.com/purcell/sqlformat/actions/workflows/test.yml)
 <a href="https://www.patreon.com/sanityinc"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 
 sqlformat.el
