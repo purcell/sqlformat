@@ -7,7 +7,7 @@ sqlformat.el
 ============
 
 This Emacs library provides commands and a minor mode for easily reformatting
-SQL using external programs such as [sqlformat][sqlformat], [sqlfluff][sqlfluff], [pg_format][pgformatter] or [sql-formatter][sql-formatter].
+SQL using any one of several popular SQL formatters (see Usage below for a list).
 
 Installation
 =============
@@ -20,12 +20,22 @@ then `(require 'sqlformat)`.
 Usage
 =====
 
-Customise the `sqlformat-command` variable as desired. For example, to
-use [pgformatter][pgformatter] (i.e., the `pg_format` command) with
+To set your preferred formatter, customise the `sqlformat-command` variable or set it as a file/directory local variable.
+The variable should be assigned one of the following symbol values:
+
+* [`sqlformat`][sqlformat]
+* [`pgformatter`][pgformatter]
+* [`sqlfluff`][sqlfluff]
+* [`sql-formatter`][sql-formatter]
+* [`sqlfmt`][sqlfmt]
+
+
+For example, to use [pgformatter][pgformatter] (i.e., the `pg_format` command) with
 two-character indent and no statement grouping,
 
 ``` el
 (setq sqlformat-command 'pgformatter)
+;; Optional additional args
 (setq sqlformat-args '("-s2" "-g"))
 ```
 
@@ -51,22 +61,6 @@ e.g. with:
 ```el
 (define-key sql-mode-map (kbd "C-c C-f") 'sqlformat)
 ```
-
-Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
-[pgformatter][pgformatter] to get "pg_format"
-
-Supported formatters
-====================
-sqlformat: https://sqlformat.org/
-
-pgformatter: https://github.com/darold/pgFormatter
-
-sqlfluff: https://www.sqlfluff.com
-
-sql-formatter: https://github.com/sql-formatter-org/sql-formatter
-
-sqlfmt: https://docs.sqlfmt.com/
-
 
 [melpa]: http://melpa.org
 [sqlformat]: https://sqlformat.org/
