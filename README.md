@@ -55,12 +55,25 @@ e.g. with:
 Install the [sqlparse][sqlformat] (Python) package to get "sqlformat", or
 [pgformatter][pgformatter] to get "pg_format"
 
+Supported formatters
+====================
+sqlformat: https://sqlformat.org/
+
+pgformatter: https://github.com/darold/pgFormatter
+
+sqlfluff: https://www.sqlfluff.com
+
+sql-formatter: https://github.com/sql-formatter-org/sql-formatter
+
+sqlfmt: https://docs.sqlfmt.com/
+
+
 [melpa]: http://melpa.org
 [sqlformat]: https://sqlformat.org/
 [pgformatter]: https://github.com/darold/pgFormatter
 [sqlfluff]: https://www.sqlfluff.com
 [sql-formatter]: https://github.com/sql-formatter-org/sql-formatter
-
+[sqlfmt]: https://docs.sqlfmt.com/
 <hr>
 
 [💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
