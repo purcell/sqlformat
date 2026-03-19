@@ -29,6 +29,7 @@
 ;; Install the "sqlparse" (Python) package to get "sqlformat",
 ;; or "pgformatter" to get "pg_format",
 ;; or "sqlfluff" (Python) to get "sqlfluff",
+;; or "pg_propre" (Rust) to get "pg_propre",
 
 ;; Customise the `sqlformat-command' variable as desired.  For example,
 ;; to use "pgformatter" (i.e., the `pg_format` command) with
@@ -62,7 +63,7 @@
 (require 'reformatter)
 
 (defgroup sqlformat nil
-  "Reformat SQL using sqlformat, sqlfluff, or pgformatter."
+  "Reformat SQL using pg_propre, sqlformat, sqlfluff, or pgformatter."
   :group 'sql)
 
 (defcustom sqlformat-command 'sqlformat
@@ -73,7 +74,8 @@ reformatted SQL to STDOUT, returning an appropriate exit code."
                  (const :tag "Use \"sqlfmt\"" sqlfmt)
                  (const :tag "Use \"pgformatter\"" pgformatter)
                  (const :tag "Use \"sqlfluff\"" sqlfluff)
-                 (const :tag "Use \"sql-formatter\"" sql-formatter)))
+                 (const :tag "Use \"sql-formatter\"" sql-formatter)
+                 (const :tag "Use \"pg_propre\"" pg_propre)))
 
 (defcustom sqlformat-args '()
   "List of command-line args for reformatting command.
@@ -92,13 +94,15 @@ For example, these args may be useful for sqlformat: (\"-k\" \"upper\")"
              (`sqlfmt "sqlfmt")
              (`pgformatter "pg_format")
              (`sqlfluff "sqlfluff")
-             (`sql-formatter "sql-formatter"))
+             (`sql-formatter "sql-formatter")
+             (`pg_propre "pg_propre"))
   :args (pcase sqlformat-command
           (`sqlformat  (append sqlformat-args '("-r" "-")))
           (`sqlfmt  (append sqlformat-args '("-")))
           (`pgformatter (append sqlformat-args '("-")))
           (`sqlfluff (append '("format") sqlformat-args '("-")))
-          (`sql-formatter sqlformat-args))
+          (`sql-formatter sqlformat-args)
+          (`pg_propre (append '("format") sqlformat-args)))
   :lighter " SQLFmt"
   :group 'sqlformat)
 
@@ -106,9 +110,10 @@ For example, these args may be useful for sqlformat: (\"-k\" \"upper\")"
 (defun sqlformat (beg end)
   "Reformat SQL in region from BEG to END using `sqlformat-region'.
 If no region is active, the current statement (paragraph) is reformatted.
-Install the \"sqlparse\" (Python) package to get \"sqlformat\", or
-\"pgformatter\" to get \"pg_format\", or install the \"sqlfluff\" (Python) 
-package to get \"sqlfluff\"."
+Install the \"pg_propre\" (Rust) package to get \"pg_propre\", or
+\"sqlparse\" (Python) package to get \"sqlformat\", or \"pgformatter\"
+to get \"pg_format\", or install the \"sqlfluff\" (Python) package to get
+\"sqlfluff\"."
   (interactive "r")
   (unless (use-region-p)
     (setq beg (save-excursion

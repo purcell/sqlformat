@@ -23,11 +23,12 @@ Usage
 To set your preferred formatter, customise the `sqlformat-command` variable or set it as a file/directory local variable.
 The variable should be assigned one of the following symbol values:
 
-* [`sqlformat`][sqlformat]
+* [`pg_propre`][pg_propre]
 * [`pgformatter`][pgformatter]
-* [`sqlfluff`][sqlfluff]
 * [`sql-formatter`][sql-formatter]
+* [`sqlfluff`][sqlfluff]
 * [`sqlfmt`][sqlfmt]
+* [`sqlformat`][sqlformat]
 
 
 For example, to use [pgformatter][pgformatter] (i.e., the `pg_format` command) with
@@ -64,6 +65,7 @@ e.g. with:
 
 [melpa]: http://melpa.org
 [sqlformat]: https://sqlformat.org/
+[pg_propre]: https://gitlab.com/madtibo/pg_propre
 [pgformatter]: https://github.com/darold/pgFormatter
 [sqlfluff]: https://www.sqlfluff.com
 [sql-formatter]: https://github.com/sql-formatter-org/sql-formatter

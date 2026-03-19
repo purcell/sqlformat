@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is `sqlformat.el`, an Emacs package that provides commands and a minor mode for reformatting SQL using external formatters: `sqlformat`, `pgformatter`, `sqlfluff`, `sql-formatter`, and `sqlfmt`. It is a single-file package built on top of the `reformatter` library.
+This is `sqlformat.el`, an Emacs package that provides commands and a minor mode for reformatting SQL using external formatters: `sqlformat`, `pg_propre`, `pgformatter`, `sqlfluff`, `sql-formatter`, and `sqlfmt`. It is a single-file package built on top of the `reformatter` library.
 
 ## Build Commands
 
