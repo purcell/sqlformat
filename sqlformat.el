@@ -102,7 +102,7 @@ For example, these args may be useful for sqlformat: (\"-k\" \"upper\")"
           (`pgformatter (append sqlformat-args '("-")))
           (`sqlfluff (append '("format") sqlformat-args '("-")))
           (`sql-formatter sqlformat-args)
-          (`pg_propre (append '("format") sqlformat-args)))
+          (`pg_propre sqlformat-args))
   :lighter " SQLFmt"
   :group 'sqlformat)
 
