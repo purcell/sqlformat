@@ -62,12 +62,18 @@ e.g. with:
 (define-key sql-mode-map (kbd "C-c C-f") 'sqlformat)
 ```
 
+Adding more formatters
+======================
+
+In general, I'd like to avoid supporting an open-ended list of backend formatters: this was probably a poor design choice on my side. My [`reformatter`][reformatter] package allows users or authors to very easily create format-on-save minor modes for arbitrary tools, so please consider using that to write (and perhaps publish) support for your favourite SQL formatter.
+
 [melpa]: http://melpa.org
 [sqlformat]: https://sqlformat.org/
 [pgformatter]: https://github.com/darold/pgFormatter
 [sqlfluff]: https://www.sqlfluff.com
 [sql-formatter]: https://github.com/sql-formatter-org/sql-formatter
 [sqlfmt]: https://docs.sqlfmt.com/
+[reformatter]: https://github.com/purcell/emacs-reformatter
 <hr>
 
 [💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
